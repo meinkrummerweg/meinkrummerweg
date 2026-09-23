@@ -1,12 +1,18 @@
+/* =========================================
+   REVEAL ON SCROLL
+========================================= */
+
 const revealElements = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       }
+
     });
   },
   {
@@ -19,44 +25,92 @@ revealElements.forEach((element) => {
 });
 
 
-/* subtle hero parallax */
+/* =========================================
+   HERO PARALLAX
+========================================= */
 
 const heroImage = document.querySelector(".hero-img");
 
-window.addEventListener("scroll", () => {
+function heroParallax() {
+
   if (!heroImage) return;
 
-  const scroll = window.scrollY;
+  const scrollY = window.scrollY;
 
-  if (scroll <= window.innerHeight) {
+  if (scrollY <= window.innerHeight * 1.2) {
+
+    const movement = scrollY * 0.04;
+
     heroImage.style.transform =
-      `scale(1.025) translateY(${scroll * 0.045}px)`;
+      `scale(1.03) translateY(${movement}px)`;
+
   }
-});
+
+}
+
+window.addEventListener(
+  "scroll",
+  heroParallax,
+  { passive: true }
+);
 
 
-/* tiny movement for handwritten elements */
+/* =========================================
+   SUBTLE HANDWRITING MOVEMENT
+========================================= */
 
-const scribbles = document.querySelectorAll(".scribble");
+const handwritten = document.querySelectorAll(".hand");
 
 window.addEventListener("mousemove", (event) => {
 
-  if (window.innerWidth < 900) return;
+  if (window.innerWidth <= 900) return;
 
-  const x =
+  const mouseX =
     (event.clientX / window.innerWidth - 0.5) * 2;
 
-  const y =
+  const mouseY =
     (event.clientY / window.innerHeight - 0.5) * 2;
 
-  scribbles.forEach((item, index) => {
+  handwritten.forEach((element, index) => {
 
-    const strength =
-      (index % 3 + 1) * 0.7;
+    const amount =
+      0.35 + ((index % 3) * 0.25);
 
-    item.style.translate =
-      `${x * strength}px ${y * strength}px`;
+    element.style.translate =
+      `${mouseX * amount}px ${mouseY * amount}px`;
 
   });
 
 });
+
+
+/* =========================================
+   SMOOTH INTERNAL LINKS
+========================================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      const targetId =
+        link.getAttribute("href");
+
+      if (!targetId || targetId === "#") return;
+
+      const target =
+        document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    });
+
+  });
