@@ -1,26 +1,1572 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mein krummer Weg — A. Mourad</title>
 
-    <title>Mein krummer Weg — A. Mourad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Italiana&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
-    <meta
-        name="description"
-        content="Mein krummer Weg. A story in progress."
-    >
+<style>
+:root{
+    --black:#0b0b0a;
+    --dark:#11110f;
+    --cream:#eee9df;
+    --paper:#e9e4d8;
+    --paper2:#d7d0c3;
+    --ink:#171715;
+    --muted:#8d887e;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+*{
+    box-sizing:border-box;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Italiana&family=Nanum+Pen+Script&display=swap"
-        rel="stylesheet"
-    >
+html{
+    scroll-behavior:smooth;
+}
 
-    <link rel="stylesheet" href="style.css">
+body{
+    margin:0;
+    overflow-x:hidden;
+    background:var(--black);
+    color:var(--cream);
+    font-family:"DM Mono",monospace;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+h1,h2,h3,p,figure,blockquote{
+    margin-top:0;
+}
+
+h1,h2,h3{
+    font-family:"Italiana",serif;
+    font-weight:400;
+}
+
+::selection{
+    background:var(--cream);
+    color:var(--black);
+}
+
+.grain{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    pointer-events:none;
+    opacity:.08;
+    mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+}
+
+.label{
+    font-size:9px;
+    letter-spacing:.22em;
+    line-height:1.7;
+    text-transform:uppercase;
+}
+
+.dark-label{
+    color:#777269;
+}
+
+.hand{
+    font-family:"Nanum Pen Script",cursive;
+    font-size:32px;
+    line-height:.9;
+}
+
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.nav{
+    position:absolute;
+    z-index:100;
+    top:0;
+    left:0;
+    width:100%;
+    padding:28px 5vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    font-family:"Italiana",serif;
+    font-size:15px;
+    letter-spacing:.17em;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+    font-size:9px;
+    letter-spacing:.18em;
+    opacity:.8;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:720px;
+    overflow:hidden;
+    background:#050505;
+}
+
+.hero-image{
+    position:absolute;
+    inset:-3%;
+    width:106%;
+    height:106%;
+    object-fit:cover;
+    filter:saturate(.67) brightness(.61) contrast(1.08);
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.28),
+            rgba(0,0,0,.02) 40%,
+            rgba(0,0,0,.86)
+        ),
+        linear-gradient(
+            to right,
+            rgba(0,0,0,.22),
+            transparent 65%
+        );
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    height:100%;
+    padding:130px 6vw 7vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.hero-title{
+    margin:0;
+    font-size:clamp(78px,12vw,180px);
+    line-height:.72;
+    letter-spacing:-.055em;
+}
+
+.hero-title span{
+    display:block;
+}
+
+.hero-mein{
+    margin-left:4vw;
+}
+
+.krummer{
+    margin-left:8vw;
+    display:flex!important;
+}
+
+.krummer i{
+    display:inline-block;
+    font-style:normal;
+}
+
+.krummer i:nth-child(1){transform:rotate(-10deg) translateY(8px);}
+.krummer i:nth-child(2){transform:rotate(-7deg);}
+.krummer i:nth-child(3){transform:rotate(-3deg) translateY(-6px);}
+.krummer i:nth-child(4){transform:rotate(3deg) translateY(-10px);}
+.krummer i:nth-child(5){transform:rotate(8deg) translateY(-7px);}
+.krummer i:nth-child(6){transform:rotate(13deg) translateY(3px);}
+.krummer i:nth-child(7){transform:rotate(17deg) translateY(14px);}
+
+.hero-weg{
+    margin-left:25vw;
+}
+
+.hero-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+}
+
+.hero-bottom p{
+    max-width:450px;
+    margin:0;
+    font-family:"Italiana",serif;
+    font-size:19px;
+    line-height:1.45;
+}
+
+.enter{
+    font-size:9px;
+    letter-spacing:.22em;
+}
+
+.hero-note{
+    position:absolute;
+    z-index:7;
+    top:58%;
+    right:8vw;
+    transform:rotate(-7deg);
+}
+
+
+/* =====================================================
+   001
+===================================================== */
+
+.intro{
+    min-height:100vh;
+    padding:11vw 7vw 13vw;
+    background:var(--paper);
+    color:var(--ink);
+}
+
+.intro-grid{
+    margin-top:60px;
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:9vw;
+}
+
+.intro h2{
+    margin:0;
+    font-size:clamp(58px,7vw,108px);
+    line-height:.94;
+    letter-spacing:-.035em;
+}
+
+.intro h2 em{
+    display:block;
+    margin-left:10%;
+    font-weight:400;
+}
+
+.intro-copy{
+    padding-top:80px;
+    font-size:11px;
+    line-height:1.9;
+}
+
+.intro-copy p{
+    margin-bottom:30px;
+}
+
+.intro-copy blockquote{
+    margin:65px 0 0 -5vw;
+    font-family:"Italiana",serif;
+    font-size:29px;
+    line-height:1.25;
+}
+
+
+/* =====================================================
+   002 MOVEMENT
+===================================================== */
+
+.movement{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+    background:#080808;
+}
+
+.movement-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:saturate(.68) brightness(.59);
+}
+
+.movement-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,rgba(0,0,0,.76),rgba(0,0,0,.05));
+}
+
+.movement-index{
+    position:absolute;
+    z-index:2;
+    top:35px;
+    right:5vw;
+    font-size:8px;
+    letter-spacing:.2em;
+}
+
+.movement-copy{
+    position:absolute;
+    z-index:3;
+    left:7vw;
+    bottom:10vh;
+    max-width:850px;
+}
+
+.movement-copy h2{
+    margin:28px 0;
+    font-size:clamp(60px,8vw,120px);
+    line-height:.88;
+}
+
+.movement-copy h2 em{
+    display:block;
+    font-weight:400;
+}
+
+.movement-small{
+    width:320px;
+    margin:45px 0 0 40%;
+    font-size:10px;
+    line-height:1.85;
+}
+
+
+/* =====================================================
+   003 FRAGMENTS
+===================================================== */
+
+.fragments{
+    padding:12vw 7vw 15vw;
+    background:var(--dark);
+}
+
+.section-heading{
+    position:relative;
+    max-width:1050px;
+    margin-bottom:10vw;
+}
+
+.section-heading h2{
+    margin:35px 0 0;
+    font-size:clamp(60px,8vw,120px);
+    line-height:.9;
+}
+
+.section-heading h2 em{
+    display:block;
+    margin-left:17%;
+    font-weight:400;
+}
+
+.section-note{
+    position:absolute;
+    right:3%;
+    bottom:-55px;
+    transform:rotate(-7deg);
+}
+
+.fragments-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.15fr .75fr;
+    gap:7vw;
+}
+
+.fragment{
+    margin:0;
+}
+
+.fragment img{
+    width:100%;
+    height:70vh;
+    min-height:500px;
+    object-fit:cover;
+    filter:saturate(.72);
+}
+
+.fragment.second{
+    margin-top:15vw;
+}
+
+.fragment.second img{
+    height:55vh;
+}
+
+.fragment figcaption{
+    margin-top:13px;
+    font-size:8px;
+    letter-spacing:.14em;
+    color:#918c82;
+}
+
+.fragment figcaption span{
+    margin-right:18px;
+    color:var(--cream);
+}
+
+.fragment-text{
+    grid-column:1/3;
+    width:360px;
+    margin:0 auto;
+    padding-top:8vw;
+}
+
+.fragment-text p{
+    font-family:"Italiana",serif;
+    font-size:28px;
+    line-height:1.25;
+}
+
+.fragment-text .small-note{
+    margin-left:70px;
+    opacity:.55;
+}
+
+
+/* =====================================================
+   MANIFESTO
+===================================================== */
+
+.manifesto{
+    padding:14vw 8vw;
+    background:var(--paper);
+    color:var(--ink);
+}
+
+.manifesto h2{
+    max-width:1050px;
+    margin:50px 0 0;
+    font-size:clamp(60px,8vw,120px);
+    line-height:.92;
+}
+
+.manifesto h2:nth-of-type(2){
+    margin-left:15vw;
+}
+
+.manifesto-hand{
+    margin:70px 0 0 60%;
+    transform:rotate(-5deg);
+}
+
+
+/* =====================================================
+   004 HIGH / LOW
+===================================================== */
+
+.trading{
+    padding:12vw 7vw;
+    background:#0e0e0d;
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:8vw;
+    align-items:center;
+}
+
+.trading-copy h2{
+    margin:30px 0 45px;
+    font-size:clamp(60px,7vw,105px);
+    line-height:.9;
+}
+
+.trading-copy > p:not(.label){
+    max-width:430px;
+    font-size:10px;
+    line-height:1.9;
+    color:#aaa59a;
+}
+
+.trading-copy .lead{
+    font-family:"Italiana",serif;
+    font-size:24px!important;
+    color:var(--cream)!important;
+}
+
+.trading-copy .hand{
+    display:block;
+    margin:50px 0 0 30%;
+    transform:rotate(-7deg);
+}
+
+.trading-images{
+    position:relative;
+    min-height:760px;
+}
+
+.trade-card{
+    position:absolute;
+    width:57%;
+    margin:0;
+}
+
+.trade-card img{
+    width:100%;
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+}
+
+.trade-one{
+    top:0;
+    left:0;
+    transform:rotate(-3deg);
+}
+
+.trade-two{
+    right:0;
+    bottom:0;
+    transform:rotate(4deg);
+}
+
+
+/* =====================================================
+   005 PROBLEM
+===================================================== */
+
+.problem{
+    position:relative;
+    height:100vh;
+    min-height:700px;
+    overflow:hidden;
+}
+
+.problem-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:saturate(.55) brightness(.42) contrast(1.08);
+}
+
+.problem-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.08));
+}
+
+.problem-copy{
+    position:absolute;
+    z-index:3;
+    left:7vw;
+    bottom:10vh;
+    max-width:850px;
+}
+
+.problem-copy h2{
+    margin:30px 0;
+    font-size:clamp(62px,8vw,120px);
+    line-height:.9;
+}
+
+.problem-copy h2 em{
+    display:block;
+    font-weight:400;
+}
+
+.problem-copy > p:last-child{
+    max-width:440px;
+    font-size:10px;
+    line-height:1.9;
+    color:#c1bcb1;
+}
+
+
+/* =====================================================
+   AGE
+===================================================== */
+
+.age{
+    min-height:100vh;
+    padding:10vw 7vw;
+    background:var(--paper);
+    color:var(--ink);
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    align-items:center;
+}
+
+.age-number{
+    font-family:"Italiana",serif;
+    font-size:clamp(230px,30vw,500px);
+    line-height:.7;
+    opacity:.09;
+}
+
+.age-copy h2{
+    margin:30px 0 0;
+    font-size:clamp(55px,6vw,95px);
+    line-height:.95;
+}
+
+.age-copy h2:nth-of-type(2){
+    margin-left:8vw;
+    color:#6f6a61;
+}
+
+.age-copy > p:last-child{
+    max-width:370px;
+    margin:45px 0 0 12vw;
+    font-size:11px;
+    line-height:1.8;
+}
+
+
+/* =====================================================
+   006 DETAILS
+===================================================== */
+
+.details{
+    padding:11vw 7vw 0;
+    background:var(--paper);
+    color:var(--ink);
+    overflow:hidden;
+}
+
+.details-intro{
+    position:relative;
+    max-width:1100px;
+    margin:0 auto 12vw;
+}
+
+.details-intro h2{
+    max-width:850px;
+    margin:35px 0 0;
+    font-size:clamp(55px,7.5vw,115px);
+    line-height:.94;
+    letter-spacing:-.035em;
+}
+
+.details-copy{
+    width:min(420px,100%);
+    margin:60px 5vw 0 auto;
+    font-size:11px;
+    line-height:1.9;
+    color:#555149;
+}
+
+.details-hand{
+    position:absolute;
+    right:3%;
+    top:12%;
+    transform:rotate(-7deg);
+}
+
+.details-grid{
+    max-width:1200px;
+    margin:0 auto 14vw;
+    display:grid;
+    grid-template-columns:1.15fr .55fr .8fr;
+    align-items:center;
+    gap:5vw;
+}
+
+.detail-photo{
+    margin:0;
+}
+
+.detail-photo img{
+    width:100%;
+    object-fit:cover;
+    filter:saturate(.72) contrast(1.03);
+}
+
+.detail-one{
+    transform:translateY(-4vw);
+}
+
+.detail-one img{
+    aspect-ratio:4/5;
+}
+
+.detail-two{
+    transform:translateY(5vw);
+}
+
+.detail-two img{
+    aspect-ratio:3/4;
+}
+
+.detail-photo figcaption{
+    margin-top:14px;
+    display:flex;
+    gap:18px;
+    font-size:8px;
+    letter-spacing:.16em;
+    color:#716d64;
+}
+
+.detail-photo figcaption span{
+    color:var(--ink);
+}
+
+.detail-quote .small{
+    margin-bottom:30px;
+    font-size:8px;
+    letter-spacing:.2em;
+    color:#77736b;
+}
+
+.detail-quote blockquote{
+    margin:0;
+    font-family:"Italiana",serif;
+    font-size:clamp(28px,3.2vw,48px);
+    line-height:1.05;
+}
+
+.detail-quote > p:last-child{
+    margin-top:25px;
+    font-size:10px;
+    line-height:1.7;
+    color:#77736b;
+}
+
+
+/* =====================================================
+   SWAN
+===================================================== */
+
+.swan{
+    width:calc(100% + 14vw);
+    margin-left:-7vw;
+    min-height:95vh;
+    background:#11110f;
+    color:var(--cream);
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+}
+
+.swan-photo{
+    position:relative;
+    min-height:95vh;
+    overflow:hidden;
+}
+
+.swan-photo img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:saturate(.55) brightness(.7) contrast(1.08);
+}
+
+.swan-photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,transparent 52%,rgba(17,17,15,.95));
+}
+
+.swan-index{
+    position:absolute;
+    z-index:2;
+    left:35px;
+    bottom:30px;
+    font-size:9px;
+    letter-spacing:.2em;
+}
+
+.swan-copy{
+    position:relative;
+    z-index:3;
+    padding:9vw 8vw 9vw 4vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.swan-copy h2{
+    margin:30px 0 55px;
+    font-size:clamp(52px,6vw,95px);
+    line-height:.94;
+}
+
+.swan-copy h2 em{
+    display:block;
+    font-weight:400;
+}
+
+.swan-copy > p:not(.label){
+    max-width:430px;
+    font-size:11px;
+    line-height:1.9;
+    color:#aaa59a;
+}
+
+.swan-copy .different{
+    margin-top:35px!important;
+    font-family:"Italiana",serif;
+    font-size:25px!important;
+    color:var(--cream)!important;
+}
+
+.swan-hand{
+    margin:40px 0 0 8vw;
+    transform:rotate(-6deg);
+}
+
+.details-ending{
+    padding:12vw 0 14vw;
+}
+
+.details-ending p{
+    max-width:350px;
+    margin:0 0 55px auto;
+    font-size:11px;
+    line-height:1.8;
+    color:#69655d;
+}
+
+.details-ending h2{
+    max-width:1000px;
+    margin:0;
+    font-size:clamp(52px,7vw,105px);
+    line-height:.96;
+}
+
+
+/* =====================================================
+   007 — UNFINISHED
+===================================================== */
+
+.unfinished{
+    position:relative;
+    min-height:110vh;
+    padding:11vw 7vw;
+    overflow:hidden;
+    background:#d8d1c5;
+    color:var(--ink);
+}
+
+.unfinished-grid{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:.75fr 1.25fr;
+    gap:5vw;
+    align-items:center;
+}
+
+.unfinished-copy{
+    position:relative;
+    z-index:5;
+}
+
+.unfinished-copy h2{
+    margin:35px 0 45px;
+    font-size:clamp(55px,6vw,95px);
+    line-height:.95;
+}
+
+.unfinished-copy > p:not(.label):not(.hand){
+    max-width:430px;
+    font-size:10px;
+    line-height:1.9;
+    color:#5e5951;
+}
+
+.unfinished-copy .hand{
+    margin:50px 0 0 15%;
+    transform:rotate(-6deg);
+}
+
+
+/* =====================================================
+   ACTUAL BOOK MOCKUP
+===================================================== */
+
+.book-area{
+    position:relative;
+    min-height:780px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective:1800px;
+}
+
+
+/* TABLE UNDER BOOK */
+
+.book-area::before{
+    content:"";
+    position:absolute;
+    width:90%;
+    height:45%;
+    left:5%;
+    bottom:4%;
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255,255,255,.13),
+            rgba(0,0,0,.08)
+        );
+    transform:skewY(-3deg);
+    opacity:.4;
+}
+
+
+/* SHADOW */
+
+.book-shadow{
+    position:absolute;
+    width:60%;
+    height:70px;
+    left:24%;
+    bottom:13%;
+    background:rgba(0,0,0,.28);
+    filter:blur(28px);
+    border-radius:50%;
+    transform:rotate(-7deg);
+}
+
+
+/* 3D BOOK WRAPPER */
+
+.book{
+    position:relative;
+
+    width:min(430px,65vw);
+    aspect-ratio:.72;
+
+    transform-style:preserve-3d;
+
+    transform:
+        rotateY(-18deg)
+        rotateX(5deg)
+        rotateZ(2deg);
+
+    transition:
+        transform .8s ease;
+
+    z-index:4;
+}
+
+.book:hover{
+    transform:
+        rotateY(-10deg)
+        rotateX(2deg)
+        rotateZ(0deg)
+        translateY(-8px);
+}
+
+
+/* PAGE BLOCK */
+
+.book-pages{
+    position:absolute;
+
+    top:9px;
+    left:9px;
+
+    width:100%;
+    height:calc(100% - 18px);
+
+    background:#d7d0c3;
+
+    transform:
+        translateZ(-20px)
+        translateX(17px);
+
+    box-shadow:
+        12px
+        18px
+        30px
+        rgba(0,0,0,.22);
+}
+
+
+/* PAGE LINES RIGHT */
+
+.book-pages::after{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    right:-18px;
+
+    width:20px;
+    height:100%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #bcb6aa 0,
+            #e6e0d4 2px,
+            #c9c2b6 3px,
+            #eee8dc 4px
+        );
+}
+
+
+/* BOTTOM PAGE EDGE */
+
+.book-pages::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-18px;
+
+    width:100%;
+    height:20px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #aaa397 0,
+            #e3ddd2 2px,
+            #beb7ab 3px,
+            #eee8dc 4px
+        );
+}
+
+
+/* SPINE */
+
+.book-spine{
+    position:absolute;
+
+    top:0;
+    left:-27px;
+
+    width:29px;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #080808,
+            #25231f 45%,
+            #090909
+        );
+
+    transform-origin:right center;
+
+    transform:
+        rotateY(-90deg)
+        translateZ(14px);
+
+    z-index:3;
+}
+
+
+/* FRONT COVER */
+
+.book-front{
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+
+    background:#111;
+
+    transform:
+        translateZ(18px);
+
+    z-index:6;
+
+    box-shadow:
+        0 3px 3px rgba(255,255,255,.08) inset,
+        0 -3px 8px rgba(0,0,0,.35) inset,
+        25px 35px 60px rgba(0,0,0,.28);
+}
+
+.book-front img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+/* COVER LIGHT */
+
+.cover-light{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(0,0,0,.34) 0%,
+            rgba(0,0,0,.12) 7%,
+            transparent 28%,
+            rgba(255,255,255,.08) 68%,
+            rgba(0,0,0,.15) 100%
+        );
+}
+
+
+/* COVER BORDER */
+
+.cover-border{
+    position:absolute;
+    inset:9px;
+    z-index:4;
+    border:1px solid rgba(255,255,255,.13);
+    pointer-events:none;
+}
+
+
+/* LITTLE BOOK CAPTION */
+
+.book-caption{
+    position:absolute;
+    z-index:6;
+    bottom:4%;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    text-align:center;
+    font-size:8px;
+    letter-spacing:.22em;
+    color:#716c63;
+}
+
+
+/* =====================================================
+   LAST PAGE
+===================================================== */
+
+.ending{
+    position:relative;
+    min-height:100vh;
+    padding:13vw 8vw 8vw;
+    background:#0c0c0b;
+}
+
+.ending .hand{
+    margin:70px 0 50px 55%;
+    transform:rotate(-7deg);
+}
+
+.ending h2{
+    margin:0;
+    font-size:clamp(70px,10vw,150px);
+    line-height:.82;
+}
+
+.ending h2:nth-of-type(2){
+    margin-left:16vw;
+    color:#8d887e;
+}
+
+.ending-copy{
+    width:300px;
+    margin:80px 10vw 0 auto;
+    font-family:"Italiana",serif;
+    font-size:20px;
+}
+
+.ending-line{
+    width:1px;
+    height:120px;
+    margin:90px auto 40px;
+    background:#4c4943;
+}
+
+.signature{
+    text-align:center;
+    font-family:"Italiana",serif;
+    letter-spacing:.25em;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    padding:35px 5vw;
+    border-top:1px solid rgba(255,255,255,.12);
+    display:flex;
+    justify-content:space-between;
+    gap:25px;
+    font-size:8px;
+    letter-spacing:.18em;
+    color:#827d73;
+}
+
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .9s cubic-bezier(.2,.7,.2,1),
+        transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+    .nav{
+        padding:25px 28px;
+    }
+
+    .hero-title{
+        font-size:clamp(76px,15vw,130px);
+    }
+
+    .hero-weg{
+        margin-left:15vw;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+    }
+
+    .intro-copy{
+        width:60%;
+        margin-left:auto;
+        padding-top:35px;
+    }
+
+    .trading{
+        grid-template-columns:1fr;
+    }
+
+    .trading-images{
+        min-height:650px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .detail-quote{
+        grid-column:2;
+    }
+
+    .detail-two{
+        grid-column:2;
+    }
+
+    .swan{
+        grid-template-columns:1fr;
+    }
+
+    .swan-photo{
+        min-height:65vh;
+    }
+
+    .swan-photo::after{
+        background:
+            linear-gradient(
+                180deg,
+                transparent 55%,
+                #11110f
+            );
+    }
+
+    .swan-copy{
+        padding:80px 8vw 110px;
+    }
+
+    .unfinished-grid{
+        grid-template-columns:1fr;
+    }
+
+    .unfinished-copy{
+        max-width:650px;
+    }
+
+    .book-area{
+        min-height:700px;
+    }
+
+    .book{
+        width:min(420px,60vw);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:720px;
+    }
+
+    .hero-content{
+        padding:125px 6vw 7vh;
+    }
+
+    .hero-title{
+        font-size:20vw;
+    }
+
+    .hero-mein{
+        margin-left:0;
+    }
+
+    .krummer{
+        margin-left:2vw;
+    }
+
+    .hero-weg{
+        margin-left:18vw;
+    }
+
+    .hero-bottom{
+        display:block;
+    }
+
+    .hero-bottom p{
+        margin-bottom:30px;
+        font-size:16px;
+    }
+
+    .hero-note{
+        display:none;
+    }
+
+    .intro{
+        padding:110px 7vw 120px;
+    }
+
+    .intro h2{
+        font-size:15vw;
+    }
+
+    .intro-copy{
+        width:100%;
+    }
+
+    .intro-copy blockquote{
+        margin-left:0;
+    }
+
+    .movement-copy h2{
+        font-size:15vw;
+    }
+
+    .movement-small{
+        width:85%;
+        margin-left:10%;
+    }
+
+    .fragments{
+        padding-top:120px;
+    }
+
+    .section-heading h2{
+        font-size:15vw;
+    }
+
+    .section-note{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        margin:40px 0 0 30%;
+    }
+
+    .fragments-grid{
+        display:block;
+    }
+
+    .fragment{
+        margin-bottom:80px;
+    }
+
+    .fragment.second{
+        margin-left:15%;
+    }
+
+    .fragment-text{
+        width:90%;
+    }
+
+    .manifesto{
+        padding:130px 8vw;
+    }
+
+    .manifesto h2{
+        font-size:15vw;
+    }
+
+    .manifesto h2:nth-of-type(2){
+        margin-left:0;
+    }
+
+    .trading{
+        padding:120px 7vw;
+    }
+
+    .trading-copy h2{
+        font-size:16vw;
+    }
+
+    .trading-images{
+        min-height:500px;
+    }
+
+    .trade-card{
+        width:68%;
+    }
+
+    .problem-copy h2{
+        font-size:14vw;
+    }
+
+    .age{
+        display:block;
+        padding:120px 7vw 130px;
+    }
+
+    .age-number{
+        font-size:55vw;
+        margin-bottom:-50px;
+    }
+
+    .age-copy h2{
+        font-size:14vw;
+    }
+
+    .age-copy h2:nth-of-type(2){
+        margin-left:0;
+    }
+
+    .age-copy > p:last-child{
+        margin-left:0;
+    }
+
+    .details{
+        padding-top:120px;
+    }
+
+    .details-intro h2{
+        font-size:14vw;
+    }
+
+    .details-hand{
+        position:relative;
+        top:auto;
+        right:auto;
+        margin:40px 0 0 35%;
+    }
+
+    .details-grid{
+        display:block;
+    }
+
+    .detail-one,
+    .detail-two{
+        transform:none;
+        margin-bottom:70px;
+    }
+
+    .detail-quote{
+        margin:70px 8vw;
+    }
+
+    .swan-photo{
+        min-height:58vh;
+    }
+
+    .swan-copy h2{
+        font-size:14vw;
+    }
+
+    .details-ending{
+        padding:110px 0 130px;
+    }
+
+    .details-ending h2{
+        font-size:14vw;
+    }
+
+    .unfinished{
+        padding:120px 7vw;
+    }
+
+    .unfinished-copy h2{
+        font-size:14vw;
+    }
+
+    .book-area{
+        min-height:570px;
+        margin-top:30px;
+    }
+
+    .book{
+        width:68vw;
+        transform:
+            rotateY(-13deg)
+            rotateX(3deg)
+            rotateZ(1deg);
+    }
+
+    .book-caption{
+        bottom:1%;
+    }
+
+    .ending{
+        padding-top:130px;
+    }
+
+    .ending h2{
+        font-size:17vw;
+    }
+
+    .ending h2:nth-of-type(2){
+        margin-left:0;
+    }
+
+    footer{
+        flex-wrap:wrap;
+    }
+}
+
+
+/* NO JS FALLBACK */
+
+.no-js .reveal{
+    opacity:1;
+    transform:none;
+}
+
+</style>
 </head>
 
 
@@ -29,44 +1575,31 @@
 <div class="grain"></div>
 
 
-<!-- ==================================================
-     NAVIGATION
-================================================== -->
-
 <nav class="nav">
 
-    <a href="#top" class="brand">
+    <a class="brand" href="#top">
         A. MOURAD
     </a>
 
     <div class="nav-links">
-
-        <a href="#story">
-            STORY
-        </a>
-
-        <a href="#fragments">
-            FRAGMENTS
-        </a>
-
-        <a href="#unfinished">
-            UNFINISHED
-        </a>
-
+        <a href="#story">STORY</a>
+        <a href="#fragments">FRAGMENTS</a>
+        <a href="#unfinished">UNFINISHED</a>
     </div>
 
 </nav>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HERO
-================================================== -->
+===================================================== -->
 
 <header class="hero" id="top">
 
+    <!-- FRANKFURT HOCHHÄUSER -->
     <img
+        class="hero-image"
         src="assets/IMG_7993.jpeg"
-        class="hero-img"
         alt=""
     >
 
@@ -80,15 +1613,13 @@
         </p>
 
 
-        <h1>
+        <h1 class="hero-title">
 
             <span class="hero-mein">
                 Mein
             </span>
 
-
-            <span class="crooked">
-
+            <span class="krummer">
                 <i>k</i>
                 <i>r</i>
                 <i>u</i>
@@ -96,9 +1627,7 @@
                 <i>m</i>
                 <i>e</i>
                 <i>r</i>
-
             </span>
-
 
             <span class="hero-weg">
                 Weg.
@@ -116,8 +1645,7 @@
                 der sich nach meinem anfühlt.
             </p>
 
-
-            <a href="#story">
+            <a class="enter" href="#story">
                 ENTER ↓
             </a>
 
@@ -126,7 +1654,7 @@
     </div>
 
 
-    <p class="hand hero-hand">
+    <p class="hand hero-note">
         still figuring<br>
         it out.
     </p>
@@ -137,14 +1665,11 @@
 <main>
 
 
-<!-- ==================================================
-     001 — NO MASTERPLAN
-================================================== -->
+<!-- =====================================================
+     001
+===================================================== -->
 
-<section
-    class="intro reveal"
-    id="story"
->
+<section class="intro reveal" id="story">
 
     <p class="label dark-label">
         / 001 — NO MASTERPLAN
@@ -152,7 +1677,6 @@
 
 
     <div class="intro-grid">
-
 
         <h2>
             Ich dachte lange,
@@ -175,13 +1699,11 @@
                 wer man ist.
             </p>
 
-
             <p>
                 Bei mir war es eher andersrum.
                 Je mehr ich ausprobiert habe,
                 desto mehr Fragen hatte ich.
             </p>
-
 
             <blockquote>
                 „Will ich das wirklich —
@@ -195,22 +1717,21 @@
 </section>
 
 
-<!-- ==================================================
-     002 — MOVEMENT
-================================================== -->
+<!-- =====================================================
+     002
+===================================================== -->
 
 <section class="movement reveal">
 
     <img
+        class="movement-image"
         src="assets/IMG_7982.jpeg"
         alt=""
     >
 
+    <div class="movement-overlay"></div>
 
-    <div class="photo-overlay"></div>
-
-
-    <p class="photo-index">
+    <p class="movement-index">
         002 / MOVEMENT
     </p>
 
@@ -221,18 +1742,15 @@
             MOVEMENT / ESCAPE / SILENCE
         </p>
 
-
         <h2>
             Manche fahren,
             um irgendwo
             <em>anzukommen.</em>
         </h2>
 
-
         <p class="movement-small">
             Ich fahre manchmal einfach,
-            um kurz nirgendwo
-            sein zu müssen.
+            um kurz nirgendwo sein zu müssen.
         </p>
 
     </div>
@@ -240,40 +1758,33 @@
 </section>
 
 
-<!-- ==================================================
-     003 — FRAGMENTS
-================================================== -->
+<!-- =====================================================
+     003
+===================================================== -->
 
-<section
-    class="fragments"
-    id="fragments"
->
+<section class="fragments" id="fragments">
 
-
-    <header class="section-heading reveal">
+    <div class="section-heading reveal">
 
         <p class="label dark-label">
             / 003 — FRAGMENTS
         </p>
-
 
         <h2>
             Kein roter Faden.
             <em>Nur mein Leben.</em>
         </h2>
 
-
-        <p class="hand section-hand">
+        <p class="hand section-note">
             pieces of something unfinished.
         </p>
 
-    </header>
+    </div>
 
 
-    <div class="fragment-layout">
+    <div class="fragments-grid">
 
-
-        <figure class="fragment fragment-a reveal">
+        <figure class="fragment reveal">
 
             <img
                 src="assets/IMG_3118.jpeg"
@@ -288,7 +1799,7 @@
         </figure>
 
 
-        <figure class="fragment fragment-b reveal">
+        <figure class="fragment second reveal">
 
             <img
                 src="assets/IMG_2850.jpeg"
@@ -303,12 +1814,11 @@
         </figure>
 
 
-        <aside class="fragment-note reveal">
+        <div class="fragment-text reveal">
 
             <span class="hand">
                 note to self
             </span>
-
 
             <p>
                 Vielleicht muss nicht alles,
@@ -316,22 +1826,21 @@
                 irgendwann dein Beruf werden.
             </p>
 
-
-            <p class="note-second">
+            <p class="small-note">
                 Manche Dinge dürfen
                 einfach nur dir gehören.
             </p>
 
-        </aside>
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
-     STATEMENT
-================================================== -->
+<!-- =====================================================
+     MANIFESTO
+===================================================== -->
 
 <section class="manifesto reveal">
 
@@ -339,20 +1848,17 @@
         SOMETHING I KEEP COMING BACK TO
     </p>
 
-
     <h2>
         Ich will kein
         beeindruckendes Leben
         <em>von außen.</em>
     </h2>
 
-
-    <h2 class="manifesto-second">
+    <h2>
         Ich will eins,
         das sich von innen
         <em>richtig anfühlt.</em>
     </h2>
-
 
     <p class="hand manifesto-hand">
         that's the whole point.
@@ -361,12 +1867,11 @@
 </section>
 
 
-<!-- ==================================================
-     004 — HIGH / LOW
-================================================== -->
+<!-- =====================================================
+     004
+===================================================== -->
 
 <section class="trading">
-
 
     <div class="trading-copy reveal">
 
@@ -374,18 +1879,15 @@
             / 004 — HIGH / LOW
         </p>
 
-
         <h2>
             Dann waren da
             diese Zahlen.
         </h2>
 
-
-        <p class="trading-lead">
+        <p class="lead">
             Für eine Zeit fühlte sich das
             wie mein eigener Weg an.
         </p>
-
 
         <p>
             Kein Lehrer.
@@ -395,13 +1897,11 @@
             oder aufhören soll.
         </p>
 
-
         <p>
             Nur ich,
             meine Entscheidungen
             und die Konsequenzen davon.
         </p>
-
 
         <p>
             Geld kann dir
@@ -410,14 +1910,12 @@
             angekommen zu sein.
         </p>
 
-
         <p>
             Bis du merkst,
             dass Gewinnen und Ankommen
             zwei völlig verschiedene
             Dinge sind.
         </p>
-
 
         <span class="hand">
             high / low / repeat.
@@ -428,73 +1926,51 @@
 
     <div class="trading-images">
 
-
-        <figure class="phone phone-a reveal">
-
-            <img
-                src="assets/IMG_6071.png"
-                alt=""
-            >
-
+        <figure class="trade-card trade-one reveal">
+            <img src="assets/IMG_6071.png" alt="">
         </figure>
 
-
-        <figure class="phone phone-b reveal">
-
-            <img
-                src="assets/IMG_6065.png"
-                alt=""
-            >
-
+        <figure class="trade-card trade-two reveal">
+            <img src="assets/IMG_6065.png" alt="">
         </figure>
-
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
-     005 — MAYBE THAT'S THE PROBLEM
-================================================== -->
+<!-- =====================================================
+     005
+===================================================== -->
 
 <section class="problem reveal">
 
     <img
+        class="problem-image"
         src="assets/IMG_6442.png"
         alt=""
     >
 
-
     <div class="problem-overlay"></div>
 
 
-    <div class="problem-content">
+    <div class="problem-copy">
 
         <p class="label">
             / 005 — MAYBE THAT'S THE PROBLEM
         </p>
-
 
         <h2>
             I hate boring shit,
             <em>don't you?</em>
         </h2>
 
-
         <p>
-            Vielleicht ist genau das
-            manchmal mein Problem.
-
-            Ich will sehen,
-            ausprobieren,
-            verlieren,
-            gewinnen,
-            verschwinden,
-            neu anfangen.
-
-            Nur stehen bleiben
-            konnte ich noch nie besonders gut.
+            Vielleicht ist genau das manchmal mein Problem.
+            Ich will sehen, ausprobieren, verlieren,
+            gewinnen, verschwinden, neu anfangen.
+            Nur stehen bleiben konnte ich noch nie
+            besonders gut.
         </p>
 
     </div>
@@ -502,12 +1978,11 @@
 </section>
 
 
-<!-- ==================================================
-     NINETEEN
-================================================== -->
+<!-- =====================================================
+     AGE
+===================================================== -->
 
 <section class="age reveal">
-
 
     <div class="age-number">
         19
@@ -520,24 +1995,20 @@
             NINETEEN / SOMEWHERE IN BETWEEN
         </p>
 
-
         <h2>
             Zu jung,
             um angekommen
             sein zu müssen.
         </h2>
 
-
-        <h2 class="age-second">
+        <h2>
             Alt genug,
             um loszugehen.
         </h2>
 
-
         <p>
             Ich weiß nicht,
             wo ich in fünf Jahren bin.
-
             Vielleicht muss ich das
             auch noch gar nicht wissen.
         </p>
@@ -547,12 +2018,11 @@
 </section>
 
 
-<!-- ==================================================
-     006 — THE DETAILS
-================================================== -->
+<!-- =====================================================
+     006 DETAILS
+===================================================== -->
 
 <section class="details">
-
 
     <div class="details-intro reveal">
 
@@ -560,28 +2030,19 @@
             / 006 — THE DETAILS
         </p>
 
-
         <h2>
             Vielleicht habe ich
             einfach gelernt,
             genauer hinzusehen.
         </h2>
 
-
-        <p class="details-text">
-            Auf Dinge,
-            an denen andere vorbeigehen.
-
-            Auf Licht.
-            Gebäude.
-            Wasser.
-
+        <p class="details-copy">
+            Auf Dinge, an denen andere vorbeigehen.
+            Auf Licht. Gebäude. Wasser.
             Auf einen kurzen Moment,
             der eigentlich nichts Besonderes
-            sein sollte und trotzdem
-            hängen bleibt.
+            sein sollte und trotzdem hängen bleibt.
         </p>
-
 
         <p class="hand details-hand">
             maybe the little things<br>
@@ -592,7 +2053,6 @@
 
 
     <div class="details-grid">
-
 
         <figure class="detail-photo detail-one reveal">
 
@@ -615,13 +2075,11 @@
                 02 / NOTICE
             </p>
 
-
             <blockquote>
                 Ich glaube,
                 ich erinnere mich selten
                 an ganze Tage.
             </blockquote>
-
 
             <p>
                 Eher an einzelne Bilder davon.
@@ -647,21 +2105,18 @@
     </div>
 
 
-    <!-- ==================================================
-         SWAN
-    ================================================== -->
+    <!-- SWAN -->
 
     <div class="swan reveal">
 
-
-        <div class="swan-image">
+        <div class="swan-photo">
 
             <img
                 src="assets/IMG_8240.jpeg"
-                alt="Schwäne auf dem Wasser"
+                alt="Schwäne auf dunklem Wasser"
             >
 
-            <span class="swan-number">
+            <span class="swan-index">
                 04
             </span>
 
@@ -674,28 +2129,23 @@
                 DIFFERENT DOESN'T MEAN WRONG
             </p>
 
-
             <h2>
                 Vielleicht ist es
                 gar nicht schlimm,
                 <em>anders zu sein.</em>
             </h2>
 
-
             <p>
                 Ich habe lange gedacht,
                 ich müsste irgendwann
-                so denken,
-                leben und wollen
+                so denken, leben und wollen
                 wie alle anderen.
             </p>
-
 
             <p>
                 Vielleicht war genau
                 das der Fehler.
             </p>
-
 
             <p>
                 Nicht alles,
@@ -703,12 +2153,10 @@
                 ist am falschen Platz.
             </p>
 
-
-            <p class="swan-last">
+            <p class="different">
                 Manchmal ist es
                 einfach nur different.
             </p>
-
 
             <span class="hand swan-hand">
                 and maybe that's okay.
@@ -722,11 +2170,9 @@
     <div class="details-ending reveal">
 
         <p>
-            Vielleicht geht es
-            gar nicht darum,
+            Vielleicht geht es gar nicht darum,
             irgendwo reinzupassen.
         </p>
-
 
         <h2>
             Vielleicht geht es darum,
@@ -742,135 +2188,135 @@
 </section>
 
 
-<!-- ==================================================
-     007 — UNFINISHED
+<!-- =====================================================
+     007 UNFINISHED
+     HIER IST DAS BUCH
+===================================================== -->
 
-    <div class="book-stage reveal">
+<section class="unfinished" id="unfinished">
 
-    <div class="book">
+    <div class="unfinished-grid">
 
-        <div class="book-pages"></div>
 
-        <div class="book-spine"></div>
+        <div class="unfinished-copy reveal">
 
-        <div class="book-front">
+            <p class="label dark-label">
+                / 007 — UNFINISHED
+            </p>
 
-            <img
-                src="assets/IMG_8237.jpeg"
-                alt="Mein krummer Weg"
-            >
+            <h2>
+                Vielleicht wird
+                daraus irgendwann
+                <em>eine Geschichte.</em>
+            </h2>
 
-            <div class="book-cover-shade"></div>
+            <p>
+                Nicht darüber,
+                wie man mit 19 erfolgreich wird.
+            </p>
+
+            <p>
+                Nicht darüber,
+                wie man alles richtig macht.
+            </p>
+
+            <p>
+                Sondern darüber,
+                wie es sich anfühlt,
+                viel vom Leben zu wollen
+                und gleichzeitig noch keine Ahnung
+                zu haben, wo man eigentlich hingehört.
+            </p>
+
+            <p class="hand">
+                not a success story.<br>
+                just a real one.
+            </p>
 
         </div>
 
-    </div>
 
-    <p class="book-caption">
-        MEIN KRUMMER WEG — A. MOURAD
-    </p>
+        <!-- =============================================
+             DAS ECHTE BUCH-MOCKUP
+             100€ FOTO = COVER
+        ============================================== -->
 
-</div>
+        <div class="book-area reveal">
 
-
-    <div class="book-copy reveal">
-
-        <p class="label dark-label">
-            / 007 — UNFINISHED
-        </p>
+            <div class="book-shadow"></div>
 
 
-        <h2>
-            Vielleicht wird
-            daraus irgendwann
-            <em>eine Geschichte.</em>
-        </h2>
+            <div class="book">
+
+                <!-- Seiten -->
+                <div class="book-pages"></div>
+
+                <!-- Buchrücken -->
+                <div class="book-spine"></div>
+
+                <!-- Vorderseite -->
+                <div class="book-front">
+
+                    <!--
+                        DEIN 100€ FOTO
+                        DAS IST DAS COVER
+                    -->
+
+                    <img
+                        src="assets/IMG_8237.jpeg"
+                        alt="Cover von Mein krummer Weg"
+                    >
+
+                    <div class="cover-light"></div>
+                    <div class="cover-border"></div>
+
+                </div>
+
+            </div>
 
 
-        <p>
-            Nicht darüber,
-            wie man mit 19
-            erfolgreich wird.
-        </p>
+            <p class="book-caption">
+                MEIN KRUMMER WEG — A. MOURAD
+            </p>
 
-
-        <p>
-            Nicht darüber,
-            wie man alles
-            richtig macht.
-        </p>
-
-
-        <p>
-            Sondern darüber,
-            wie es sich anfühlt,
-            viel vom Leben zu wollen
-            und gleichzeitig
-            noch keine Ahnung zu haben,
-            wo man eigentlich hingehört.
-        </p>
-
-
-        <p class="hand">
-            not a success story.<br>
-            just a real one.
-        </p>
-
-    </div>
-
-
-    <!-- 100€ FOTO ALS COVER -->
-
-    <div class="book-cover reveal">
-
-        <img
-            src="assets/IMG_8237.jpeg"
-            alt="Mein krummer Weg"
-        >
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
-     LAST PAGE
-================================================== -->
+<!-- =====================================================
+     END
+===================================================== -->
 
 <section class="ending reveal">
-
 
     <p class="label">
         LAST PAGE — FOR NOW
     </p>
-
 
     <p class="hand">
         same dreams.<br>
         different route.
     </p>
 
-
     <h2>
         Ich bin noch
         nicht da.
     </h2>
 
-
-    <h2 class="ending-second">
+    <h2>
         Aber wenigstens
         gehe ich.
     </h2>
-
 
     <p class="ending-copy">
         Und vielleicht
         reicht das fürs Erste.
     </p>
 
-
     <div class="ending-line"></div>
-
 
     <p class="signature">
         A. MOURAD
@@ -878,13 +2324,8 @@
 
 </section>
 
-
 </main>
 
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
 
 <footer>
 
@@ -903,7 +2344,204 @@
 </footer>
 
 
-<script src="script.js"></script>
+<script>
+
+/* =====================================================
+   REVEALS
+===================================================== */
+
+const reveals =
+    document.querySelectorAll(".reveal");
+
+
+if ("IntersectionObserver" in window) {
+
+    const observer =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+                        observer
+                            .unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold:0.08
+            }
+
+        );
+
+
+    reveals.forEach(element => {
+        observer.observe(element);
+    });
+
+}
+
+else {
+
+    reveals.forEach(element => {
+        element.classList.add("visible");
+    });
+
+}
+
+
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+
+const heroImage =
+    document.querySelector(".hero-image");
+
+
+function heroParallax(){
+
+    if(!heroImage){
+        return;
+    }
+
+    const y =
+        window.scrollY;
+
+    if(
+        y <
+        window.innerHeight * 1.3
+    ){
+
+        heroImage.style.transform =
+            `translateY(${y * .10}px) scale(1.03)`;
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    heroParallax,
+    {
+        passive:true
+    }
+);
+
+
+/* =====================================================
+   SMOOTH LINKS
+===================================================== */
+
+document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const id =
+                    link.getAttribute("href");
+
+                const target =
+                    document.querySelector(id);
+
+                if(!target){
+                    return;
+                }
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   BOOK SUBTLE MOVEMENT
+===================================================== */
+
+const book =
+    document.querySelector(".book");
+
+const bookArea =
+    document.querySelector(".book-area");
+
+
+if(
+    book &&
+    bookArea &&
+    window.matchMedia("(min-width: 901px)").matches
+){
+
+    bookArea.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                bookArea.getBoundingClientRect();
+
+            const x =
+                (
+                    event.clientX -
+                    rect.left
+                ) /
+                rect.width -
+                .5;
+
+            const y =
+                (
+                    event.clientY -
+                    rect.top
+                ) /
+                rect.height -
+                .5;
+
+            const rotateY =
+                -18 + x * 7;
+
+            const rotateX =
+                5 - y * 5;
+
+            book.style.transform =
+                `rotateY(${rotateY}deg)
+                 rotateX(${rotateX}deg)
+                 rotateZ(2deg)`;
+
+        }
+    );
+
+
+    bookArea.addEventListener(
+        "mouseleave",
+        () => {
+
+            book.style.transform =
+                "rotateY(-18deg) rotateX(5deg) rotateZ(2deg)";
+
+        }
+    );
+
+}
+
+</script>
 
 </body>
-</html>
+    </html>
