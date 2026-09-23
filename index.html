@@ -4,360 +4,460 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mein krummer Weg</title>
-  <meta name="description" content="19 Jahre. Viele Wege. Keiner davon gerade.">
+  <title>Mein krummer Weg — Ali</title>
+  <meta name="description" content="Gedanken, Momente und Umwege aus einem Leben, das noch lange nicht fertig geschrieben ist.">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <!--
+    Bodoni Moda = elegante Editorial-Schrift
+    Manrope = cleane kleine Texte
+    Caveat = nur ganz sparsam als handschriftliches Detail
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    html {
-      scroll-behavior: smooth;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,ital,wght@6..96,400;6..96,500;6..96,600;6..96,400&family=Caveat:wght@400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
-    body {
-      background: #080808;
-      color: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
-
-    nav {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      padding: 28px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .logo {
-      font-size: 14px;
-      letter-spacing: 4px;
-      font-weight: 700;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 13px;
-      opacity: .75;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 7% 80px;
-      background:
-        radial-gradient(circle at center, #242424 0%, #0d0d0d 45%, #050505 100%);
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      font-size: 11px;
-      color: #aaa;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-size: clamp(55px, 10vw, 120px);
-      line-height: .88;
-      letter-spacing: -5px;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 38px;
-      color: #bdbdbd;
-      font-size: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 17px 32px;
-      background: #fff;
-      color: #080808;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 1px;
-      transition: .25s;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-      opacity: .85;
-    }
-
-    section {
-      padding: 110px 8%;
-    }
-
-    .statement {
-      max-width: 950px;
-      margin: auto;
-    }
-
-    .statement h2 {
-      font-size: clamp(38px, 6vw, 75px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 40px;
-    }
-
-    .statement p {
-      max-width: 680px;
-      color: #aaa;
-      font-size: 18px;
-    }
-
-    .numbers {
-      border-top: 1px solid #222;
-      border-bottom: 1px solid #222;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      text-align: center;
-    }
-
-    .number {
-      padding: 70px 20px;
-      border-right: 1px solid #222;
-    }
-
-    .number:last-child {
-      border-right: 0;
-    }
-
-    .number strong {
-      display: block;
-      font-size: 40px;
-      margin-bottom: 8px;
-    }
-
-    .number span {
-      color: #777;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 10px;
-    }
-
-    .story {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .story h2 {
-      font-size: 42px;
-      margin-bottom: 35px;
-    }
-
-    .story p {
-      color: #aaa;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .quote {
-      font-size: clamp(30px, 5vw, 58px);
-      line-height: 1.15;
-      text-align: center;
-      max-width: 1000px;
-      margin: auto;
-      font-weight: 700;
-    }
-
-    .buy {
-      text-align: center;
-      padding-top: 130px;
-      padding-bottom: 130px;
-    }
-
-    .book {
-      width: 230px;
-      height: 330px;
-      margin: 0 auto 45px;
-      background: linear-gradient(145deg, #181818, #050505);
-      border: 1px solid #333;
-      box-shadow: 25px 30px 60px rgba(0,0,0,.7);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 25px;
-    }
-
-    .book small {
-      letter-spacing: 3px;
-      color: #777;
-      margin-bottom: 15px;
-    }
-
-    .book strong {
-      font-size: 31px;
-      line-height: .95;
-      text-transform: uppercase;
-    }
-
-    .buy h2 {
-      font-size: 45px;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 20px;
-      color: #aaa;
-      margin-bottom: 30px;
-    }
-
-    footer {
-      padding: 35px 8%;
-      border-top: 1px solid #1c1c1c;
-      color: #666;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    @media (max-width: 700px) {
-      h1 {
-        letter-spacing: -3px;
-      }
-
-      .numbers {
-        grid-template-columns: 1fr;
-      }
-
-      .number {
-        border-right: 0;
-        border-bottom: 1px solid #222;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">MEIN KRUMMER WEG</div>
-  <a href="#buch">DAS BUCH</a>
-</nav>
+  <div class="noise"></div>
 
-<header class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">Eine Geschichte, die noch nicht fertig ist.</div>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="#top" class="logo">
+      MEIN KRUMMER WEG
+    </a>
 
-    <h1>MEIN<br>KRUMMER<br>WEG</h1>
+    <div class="nav-links">
+      <a href="#gedanken">Gedanken</a>
+      <a href="#leben">Leben</a>
+      <a href="#buch">Buch</a>
+    </div>
 
-    <p>
-      19 Jahre. Große Ziele. Gewinne, Verluste, Autos, Arbeit,
-      Zweifel und die permanente Suche nach dem eigenen Weg.
+    <span class="nav-year">MMXXVI</span>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+
+    <img
+      class="hero-image"
+      src="assets/FD27D5C8-0BB1-44DE-8AF7-A8F8D49F0CD5.jpeg"
+      alt=""
+    >
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-number">01</div>
+
+    <div class="hero-content">
+
+      <p class="micro">
+        NOTES FROM SOMEWHERE IN BETWEEN
+      </p>
+
+      <h1>
+        Mein krummer
+        <span>Weg.</span>
+      </h1>
+
+      <p class="hero-text">
+        Ich glaube nicht, dass jeder Mensch dafür gemacht ist,
+        einfach einem Plan zu folgen, nur weil er funktioniert.
+      </p>
+
+      <a href="#gedanken" class="discover">
+        scroll to enter
+        <span>↓</span>
+      </a>
+
+    </div>
+
+    <p class="hero-note">
+      19 years old.<br>
+      still figuring it out.
     </p>
 
-    <a class="button" href="#buch">DIE GESCHICHTE ENTDECKEN</a>
-  </div>
-</header>
+  </header>
 
-<section>
-  <div class="statement">
-    <h2>
-      Von außen kann alles richtig aussehen,
-      während du innerlich noch immer nach deinem Weg suchst.
-    </h2>
 
-    <p>
-      Dieses Buch ist keine Anleitung dafür, wie du dein Leben führen sollst.
-      Es ist die ehrliche Geschichte eines jungen Menschen, der immer mehr
-      wollte, vieles ausprobierte und dabei herausfinden musste, dass Erfolg
-      und Ankommen nicht dasselbe sind.
-    </p>
-  </div>
-</section>
+  <!-- INTRO -->
+  <main>
 
-<div class="numbers">
-  <div class="number">
-    <strong>19</strong>
-    <span>Jahre alt</span>
-  </div>
+    <section class="intro-section reveal" id="gedanken">
 
-  <div class="number">
-    <strong>∞</strong>
-    <span>Gedanken</span>
-  </div>
+      <div class="section-index">
+        001 — A thought
+      </div>
 
-  <div class="number">
-    <strong>1</strong>
-    <span>Krummer Weg</span>
-  </div>
-</div>
+      <div class="intro-layout">
 
-<section>
-  <div class="story">
-    <h2>Es ging nie nur ums Geld.</h2>
+        <h2>
+          Vielleicht habe ich
+          <em>nie</em> nach dem
+          richtigen Weg gesucht.
+        </h2>
 
-    <p>
-      Schule. Arbeit. Trading. Autos. Neue Pläne. Neue Rückschläge.
-      Immer wieder die Hoffnung, endlich das gefunden zu haben,
-      was wirklich zu mir passt.
-    </p>
+        <div class="intro-copy">
 
-    <p>
-      Manche Momente fühlten sich an, als hätte ich mein Leben bereits
-      verstanden. Andere, als würde ich wieder komplett bei null anfangen.
-    </p>
+          <p>
+            Vielleicht wollte ich einfach nur wissen,
+            ob es auch einen gibt, der sich wirklich
+            nach meinem anfühlt.
+          </p>
 
-    <p>
-      Mein krummer Weg erzählt von beidem.
-    </p>
-  </div>
-</section>
+          <p>
+            Ich habe schon oft gedacht, ich hätte ihn gefunden.
+            Schule. Arbeit. Trading. Autos. Geld. Neue Ideen.
+            Und jedes Mal kam irgendwann wieder dieselbe Frage:
+          </p>
 
-<section>
-  <div class="quote">
-    „Vielleicht ist ein krummer Weg nicht der falsche Weg.“
-  </div>
-</section>
+          <strong>
+            „Will ich das wirklich — oder bin ich nur gut darin?“
+          </strong>
 
-<section class="buy" id="buch">
+        </div>
 
-  <div class="book">
-    <small>EINE WAHRE GESCHICHTE</small>
-    <strong>MEIN<br>KRUMMER<br>WEG</strong>
-  </div>
+      </div>
 
-  <h2>Mein krummer Weg</h2>
+    </section>
 
-  <div class="price">Digitales Buch · 9,99 €</div>
 
-  <!-- Checkout-Link kommt später hier rein -->
-  <a class="button" href="#">
-    JETZT LESEN
-  </a>
+    <!-- CAR / OWN LIFE -->
+    <section class="full-story reveal">
 
-</section>
+      <img
+        src="assets/IMG_7993.jpeg"
+        alt=""
+      >
 
-<footer>
-  <span>© 2026 Mein krummer Weg</span>
-  <span>Impressum · Datenschutz</span>
-</footer>
+      <div class="full-dark"></div>
+
+      <div class="full-caption">
+
+        <span>02 / Bewegung</span>
+
+        <p>
+          Manche fahren,
+          um irgendwo anzukommen.
+          <em>Ich fahre manchmal einfach,
+          um kurz nirgendwo sein zu müssen.</em>
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- EDITORIAL COLLAGE -->
+    <section class="journal" id="leben">
+
+      <div class="journal-head reveal">
+
+        <span>Fragments of a life</span>
+
+        <h2>
+          Dinge, die nichts
+          miteinander zu tun haben.
+          <em>Und irgendwie doch alles.</em>
+        </h2>
+
+      </div>
+
+
+      <div class="editorial-grid">
+
+        <figure class="photo photo-a reveal">
+          <img src="assets/IMG_7982.jpeg" alt="">
+          <figcaption>
+            <span>03</span>
+            <p>Orte, an denen mein Kopf für ein paar Minuten leiser wird.</p>
+          </figcaption>
+        </figure>
+
+
+        <figure class="photo photo-b reveal">
+          <img src="assets/IMG_3118.jpeg" alt="">
+          <figcaption>
+            <span>04</span>
+            <p>Geschmack verändert sich. Das Gefühl für Details irgendwie nicht.</p>
+          </figcaption>
+        </figure>
+
+
+        <div class="small-thought reveal">
+          <span class="handwriting">note to self</span>
+
+          <p>
+            Du musst nicht wissen,
+            was du dein ganzes Leben machen willst.
+          </p>
+
+          <p class="little">
+            Du solltest nur merken,
+            wenn etwas nicht mehr deins ist.
+          </p>
+        </div>
+
+
+        <figure class="photo photo-c reveal">
+          <img src="assets/IMG_2850.jpeg" alt="">
+          <figcaption>
+            <span>05</span>
+            <p>Vielleicht war „anders“ nie das Problem.</p>
+          </figcaption>
+        </figure>
+
+      </div>
+
+    </section>
+
+
+    <!-- BIG QUOTE -->
+    <section class="manifesto reveal">
+
+      <span class="manifesto-small">
+        SOMETHING I KEEP THINKING ABOUT
+      </span>
+
+      <blockquote>
+        „Ich will kein beeindruckendes
+        Leben von außen.
+        <em>Ich will eins, das sich von innen
+        richtig anfühlt.</em>“
+      </blockquote>
+
+      <span class="handwriting manifesto-sign">
+        that's the whole point.
+      </span>
+
+    </section>
+
+
+    <!-- TRADING -->
+    <section class="trading">
+
+      <div class="trading-copy reveal">
+
+        <span class="section-index">
+          006 — highs & lows
+        </span>
+
+        <h2>
+          Für einen Moment
+          dachte ich,
+          <em>ich hätte es verstanden.</em>
+        </h2>
+
+        <p>
+          Aus Zahlen wurden Möglichkeiten.
+          Aus Möglichkeiten wurde Euphorie.
+          Und irgendwann merkt man, dass Gewinnen
+          und Ankommen zwei völlig verschiedene Dinge sind.
+        </p>
+
+        <p>
+          Ich habe gesehen, wie schnell etwas wachsen kann.
+          Und wie schnell man wieder am Anfang steht.
+        </p>
+
+        <strong>
+          Beides verändert dich.
+        </strong>
+
+      </div>
+
+
+      <div class="trading-images">
+
+        <div class="phone phone-one reveal">
+          <img src="assets/IMG_6071.png" alt="">
+        </div>
+
+        <div class="phone phone-two reveal">
+          <img src="assets/IMG_6065.png" alt="">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCREENSHOT QUOTE -->
+    <section class="boring reveal">
+
+      <img src="assets/IMG_6442.png" alt="">
+
+      <div class="boring-overlay"></div>
+
+      <div class="boring-copy">
+
+        <span>
+          MAYBE THAT'S THE PROBLEM
+        </span>
+
+        <h2>
+          I hate boring shit,
+          <em>don't you?</em>
+        </h2>
+
+      </div>
+
+    </section>
+
+
+    <!-- SECOND PERSONAL SECTION -->
+    <section class="between reveal">
+
+      <div class="between-number">
+        19
+      </div>
+
+      <div class="between-copy">
+
+        <span>years old</span>
+
+        <h2>
+          Zu jung, um angekommen
+          sein zu müssen.
+          <em>Alt genug, um loszugehen.</em>
+        </h2>
+
+        <p>
+          Ich weiß nicht, wo ich in fünf Jahren bin.
+          Früher hätte mich genau das verrückt gemacht.
+          Heute glaube ich, dass darin vielleicht
+          die Freiheit liegt.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- RANDOM LIFE MOSAIC -->
+    <section class="mosaic">
+
+      <img class="m1 reveal" src="assets/IMG_8230.jpeg" alt="">
+      <img class="m2 reveal" src="assets/IMG_8231.jpeg" alt="">
+      <img class="m3 reveal" src="assets/IMG_8232.jpeg" alt="">
+      <img class="m4 reveal" src="assets/IMG_8234.jpeg" alt="">
+
+      <div class="mosaic-text reveal">
+        <span>NO MASTERPLAN.</span>
+
+        <p>
+          Nur Dinge, die mich interessieren.
+          Orte, die ich sehen will.
+          Menschen, die ich liebe.
+          Ideen, die ich ausprobieren muss.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- BOOK -->
+    <section class="book" id="buch">
+
+      <div class="book-intro reveal">
+
+        <span class="section-index">
+          007 — someday
+        </span>
+
+        <h2>
+          Vielleicht wird daraus
+          irgendwann ein Buch.
+        </h2>
+
+        <p>
+          Nicht darüber, wie man mit 19 erfolgreich wird.
+          Davon gibt es genug.
+        </p>
+
+        <p>
+          Sondern darüber, wie verwirrend es sein kann,
+          gleichzeitig große Träume zu haben und noch
+          überhaupt keine Ahnung zu haben, wer man einmal wird.
+        </p>
+
+      </div>
+
+
+      <div class="book-cover reveal">
+
+        <div class="cover-top">
+          ALI
+        </div>
+
+        <div class="cover-center">
+
+          <small>
+            NOTES ON BECOMING
+          </small>
+
+          <h3>
+            MEIN<br>
+            KRUMMER<br>
+            <i>WEG</i>
+          </h3>
+
+        </div>
+
+        <div class="cover-bottom">
+          <span>01</span>
+          <span>A STORY IN PROGRESS</span>
+          <span>2026</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+    <section class="ending reveal">
+
+      <p class="handwriting">
+        maybe we're all just figuring it out.
+      </p>
+
+      <h2>
+        Ich bin noch nicht da.
+        <em>Aber wenigstens gehe ich.</em>
+      </h2>
+
+      <p class="ending-small">
+        Und vielleicht reicht das fürs Erste.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <span>
+      MEIN KRUMMER WEG
+    </span>
+
+    <span>
+      ALI — 2026
+    </span>
+
+    <a href="#top">
+      BACK TO TOP ↑
+    </a>
+
+  </footer>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
