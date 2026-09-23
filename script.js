@@ -1,116 +1,328 @@
-/* =========================================
-   REVEAL ON SCROLL
-========================================= */
+/* ==================================================
+   MEIN KRUMMER WEG
+   A. MOURAD
+================================================== */
 
-const revealElements = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
 
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-    });
-  },
-  {
-    threshold: 0.1
-  }
-);
+
+const revealObserver =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+
+                    revealObserver
+                        .unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
 
 revealElements.forEach((element) => {
-  observer.observe(element);
+
+    revealObserver.observe(element);
+
 });
 
 
-/* =========================================
+/* ==================================================
    HERO PARALLAX
-========================================= */
+================================================== */
 
-const heroImage = document.querySelector(".hero-img");
+const heroImage =
+    document.querySelector(".hero-img");
 
-function heroParallax() {
 
-  if (!heroImage) return;
+function updateHeroParallax() {
 
-  const scrollY = window.scrollY;
+    if (!heroImage) {
+        return;
+    }
 
-  if (scrollY <= window.innerHeight * 1.2) {
 
-    const movement = scrollY * 0.04;
+    const scrollY =
+        window.scrollY;
 
-    heroImage.style.transform =
-      `scale(1.03) translateY(${movement}px)`;
 
-  }
+    const windowHeight =
+        window.innerHeight;
+
+
+    if (scrollY < windowHeight * 1.25) {
+
+        const movement =
+            scrollY * 0.12;
+
+
+        heroImage.style.transform =
+            `translateY(${movement}px) scale(1.02)`;
+
+    }
 
 }
 
+
 window.addEventListener(
-  "scroll",
-  heroParallax,
-  { passive: true }
+    "scroll",
+    updateHeroParallax,
+    {
+        passive: true
+    }
 );
 
 
-/* =========================================
-   SUBTLE HANDWRITING MOVEMENT
-========================================= */
+/* ==================================================
+   HANDWRITING MOVEMENT
+================================================== */
 
-const handwritten = document.querySelectorAll(".hand");
+const handElements =
+    document.querySelectorAll(".hand");
 
-window.addEventListener("mousemove", (event) => {
 
-  if (window.innerWidth <= 900) return;
+document.addEventListener(
+    "mousemove",
+    (event) => {
 
-  const mouseX =
-    (event.clientX / window.innerWidth - 0.5) * 2;
+        if (window.innerWidth < 900) {
+            return;
+        }
 
-  const mouseY =
-    (event.clientY / window.innerHeight - 0.5) * 2;
 
-  handwritten.forEach((element, index) => {
+        const mouseX =
+            event.clientX /
+            window.innerWidth -
+            0.5;
 
-    const amount =
-      0.35 + ((index % 3) * 0.25);
 
-    element.style.translate =
-      `${mouseX * amount}px ${mouseY * amount}px`;
+        const mouseY =
+            event.clientY /
+            window.innerHeight -
+            0.5;
 
-  });
+
+        handElements.forEach(
+
+            (element, index) => {
+
+                const strength =
+                    index % 2 === 0
+                        ? 3
+                        : -3;
+
+
+                const moveX =
+                    mouseX *
+                    strength;
+
+
+                const moveY =
+                    mouseY *
+                    strength;
+
+
+                element.style.translate =
+                    `${moveX}px ${moveY}px`;
+
+            }
+
+        );
+
+    }
+);
+
+
+/* ==================================================
+   SMOOTH INTERNAL LINKS
+================================================== */
+
+const internalLinks =
+    document.querySelectorAll(
+        'a[href^="#"]'
+    );
+
+
+internalLinks.forEach((link) => {
+
+    link.addEventListener(
+        "click",
+        (event) => {
+
+            const href =
+                link.getAttribute("href");
+
+
+            if (!href || href === "#") {
+                return;
+            }
+
+
+            const target =
+                document.querySelector(href);
+
+
+            if (!target) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+    );
 
 });
 
 
-/* =========================================
-   SMOOTH INTERNAL LINKS
-========================================= */
+/* ==================================================
+   SUBTLE IMAGE PARALLAX
+================================================== */
 
-document
-  .querySelectorAll('a[href^="#"]')
-  .forEach((link) => {
+const movementImage =
+    document.querySelector(
+        ".movement > img"
+    );
 
-    link.addEventListener("click", (event) => {
 
-      const targetId =
-        link.getAttribute("href");
+const problemImage =
+    document.querySelector(
+        ".problem > img"
+    );
 
-      if (!targetId || targetId === "#") return;
 
-      const target =
-        document.querySelector(targetId);
+function imageParallax() {
 
-      if (!target) return;
+    const viewportHeight =
+        window.innerHeight;
 
-      event.preventDefault();
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+    if (movementImage) {
 
-    });
+        const movementRect =
+            movementImage
+                .parentElement
+                .getBoundingClientRect();
 
-  });
+
+        if (
+            movementRect.bottom > 0 &&
+            movementRect.top < viewportHeight
+        ) {
+
+            const progress =
+                (
+                    viewportHeight -
+                    movementRect.top
+                ) /
+                (
+                    viewportHeight +
+                    movementRect.height
+                );
+
+
+            const offset =
+                (progress - 0.5) * 40;
+
+
+            movementImage.style.transform =
+                `scale(1.06) translateY(${offset}px)`;
+
+        }
+
+    }
+
+
+    if (problemImage) {
+
+        const problemRect =
+            problemImage
+                .parentElement
+                .getBoundingClientRect();
+
+
+        if (
+            problemRect.bottom > 0 &&
+            problemRect.top < viewportHeight
+        ) {
+
+            const progress =
+                (
+                    viewportHeight -
+                    problemRect.top
+                ) /
+                (
+                    viewportHeight +
+                    problemRect.height
+                );
+
+
+            const offset =
+                (progress - 0.5) * 35;
+
+
+            problemImage.style.transform =
+                `scale(1.06) translateY(${offset}px)`;
+
+        }
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    imageParallax,
+    {
+        passive: true
+    }
+);
+
+
+/* ==================================================
+   INITIAL LOAD
+================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        updateHeroParallax();
+
+        imageParallax();
+
+    }
+);
